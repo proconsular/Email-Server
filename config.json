@@ -1,8 +1,9 @@
 {
   "base_url": "web/",
-  "port": 8001,
+  "port": 80,
   "keep-alive": 60,
   "port_fixed": true,
-  "domain": "drade.io",
+  "domain": "mail.drade.io",
+  "sender_domain": "drade.io",
   "secret": "helloworld"
 }

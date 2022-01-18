@@ -9,3 +9,6 @@ tests/lib/
 cmake-build-debug/
 
 keys/
+
+._*
+.DS_Store

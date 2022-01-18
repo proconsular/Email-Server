@@ -5,6 +5,8 @@
 #ifndef P8_WEB_SERVER_STATE_H
 #define P8_WEB_SERVER_STATE_H
 
+#define MYSQLPP_MYSQL_HEADERS_BURIED
+
 #include "task_scheduler.h"
 #include "connection.h"
 #include "client_request.h"
@@ -14,11 +16,19 @@
 #include "http_request_carrier.h"
 
 #include <vector>
+#include <objects/authenicator.h>
 #include "objects/route.h"
 #include "objects/access_profile.h"
 #include "objects/user_account.h"
 #include "objects/web_socket_message.h"
 #include "objects/session.h"
+#include "objects/email.h"
+#include "objects/dkim_signer.h"
+#include "objects/authenicator.h"
+
+#include <mysql++/mysql++.h>
+
+#include "state/mail_state.h"
 
 class State {
 public:
@@ -34,8 +44,12 @@ public:
         access_level = "public";
         access_profiles["public"] = public_access;
 
-        accounts.push_back(std::make_shared<UserAccount>("admin", "hello", "admin"));
+        mail = std::make_unique<MailState>();
     }
+
+    std::unique_ptr<Authenticator> authenticator;
+    std::unique_ptr<mysqlpp::Connection> database;
+    std::shared_ptr<UserAccount> unknown_account;
 
     const SSL_METHOD *ssl_method;
     SSL_CTX *ssl_context;
@@ -66,10 +80,22 @@ public:
 
     std::map<std::string, std::shared_ptr<Session>> sessions;
 
+    std::unique_ptr<MailState> mail;
+
     bool ssl_enabled;
 
     AccessProfile get_access_profile() {
         return access_profiles[access_level];
+    }
+
+    std::shared_ptr<UserAccount> get_user_from_token(const std::string& token) {
+        for (const auto& account : accounts) {
+            for (const auto& auth : account->authorizations) {
+                if (auth.access_token == token)
+                    return account;
+            }
+        }
+        return nullptr;
     }
 };
 

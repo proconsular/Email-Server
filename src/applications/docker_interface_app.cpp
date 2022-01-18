@@ -3,8 +3,8 @@
 //
 
 #include "docker_interface_app.h"
-#include "utils.h"
-#include "json.hpp"
+#include "general/utils.h"
+#include "general/json.hpp"
 
 #include <thread>
 

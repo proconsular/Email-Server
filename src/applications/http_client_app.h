@@ -8,15 +8,15 @@
 #include <utility>
 #include <memory>
 
-#include "state.h"
+#include "general/state.h"
 
 #include "controllers/direct_controller.h"
 #include "actions/action.h"
 
-#include "tasks/initialize_http_request_connections_task.h"
-#include "tasks/send_http_requests_task.h"
-#include "tasks/receive_http_responses_task.h"
-#include "tasks/watch_http_response_task.h"
+#include "tasks/http/client/initialize_http_request_connections_task.h"
+#include "tasks/http/client/send_http_requests_task.h"
+#include "tasks/http/client/receive_http_responses_task.h"
+#include "tasks/http/client/watch_http_response_task.h"
 
 #include "receivers/log_action_receiver.h"
 

@@ -26,11 +26,18 @@ void FinalizeClientRequestsTask::perform() {
                         }
                         break;
                     }
+                    case NotFound: {
+                        response->body = std::make_shared<std::string>("");
+                        response->code = 404;
+                        response->status = "Not Found";
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+                        break;
+                    }
                     case BadRequest: {
                         response->body = std::make_shared<std::string>("");
                         response->code = 400;
                         response->status = "Bad Request";
-                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
                         break;
                     }
                     case RedirectSSL: {
@@ -66,6 +73,22 @@ void FinalizeClientRequestsTask::perform() {
                         response->status = "Created";
                         break;
                     }
+                    case SendMail: {
+                        response->code = 201;
+                        response->status = "Created";
+                        response->body = std::make_shared<std::string>("");
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+                        break;
+                    }
+                    case OK: {
+                        response->code = 200;
+                        response->status = "OK";
+                        response->body = request->data;
+                        for (const auto & response_header : request->response_headers) {
+                            response->headers[response_header.first] = std::make_shared<std::string>(response_header.second);
+                        }
+                        break;
+                    }
                     default:
                         response->status = "Not Implemented";
                         response->code = 501;
@@ -84,20 +107,20 @@ void FinalizeClientRequestsTask::perform() {
                         response->code = 404;
                         response->status = "Not Found";
                         response->body = std::make_shared<std::string>("");
-                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
                         break;
                     }
                     case Authorize: {
                         response->code = 401;
                         response->status = "Unauthorized";
                         response->body = std::make_shared<std::string>("");
-                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
                     }
                     case Forbidden: {
                         response->code = 403;
                         response->status = "Forbidden";
                         response->body = std::make_shared<std::string>("");
-                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
+//                        response->headers["Content-Length"] = std::make_shared<std::string>("0");
                     }
                     default:
                         break;

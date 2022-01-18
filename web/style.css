@@ -1,18 +1,433 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+body {
+    background: rgb(240, 240, 240);
+
+}
+#container {
+    /*overflow: hidden;*/
+}
+.page {
+    /*position: relative;*/
+}
+.notification {
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 11%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 8px 16px;
+    border: 1px solid #3332;
+    opacity: 0;
+}
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    background: #fff;
+    min-width: 1000px;
+    width: 50%;
+    min-height: 500px;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #3332;
+    box-sizing: border-box;
+    display: flex;
+}
+#view_main, #view_users, #view_settings {
+    display: flex;
+    overflow: hidden;
 }
 
-body {
-    background: #111;
+.card {
+    /* background: #f333; */
+    width: 400px;
+    min-height: 40px;
+    overflow: hidden;
+    /* color: #fff; */
+    padding: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 18px;
+    color: #333;
+    box-sizing: border-box;
+    /* border: 1px solid #333b; */
+    /* border-bottom: 1px solid #111a; */
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    /* text-decoration: underline; */
+    /* box-shadow: 0px 0px 2px 2px #1111; */
+    /* background: #3331; */
+}
+.card:hover {
+    background: #3331;
+}
+.card:last-child {
+    margin-bottom: 0;
+    /* border: none; */
+}
+.controls {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    color: #333;
+    display: flex;
+}
+
+.controls > button {
+    margin-right: 30px;
+}
+
+.controls > button :last-child {
+    margin-right: 0;
+}
+
+.subject {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.list {
+    position: relative;
+    background: #fff;
+    padding: 8px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-right: 1px solid #3332;
+    /* border-radius: 6px; */
+}
+.list_body {
+    overflow: scroll;
+}
+.options {
+    /*margin-top: 8px;*/
+    padding-top: 8px;
+    border-top: 1px dashed #1115;
+    display: flex;
+    justify-content: center;
+}
+.options>div {
+    margin-right: 20px;
+}
+.options>div:hover {
+    color: #33f;
+    text-decoration: underline;
+}
+.title {
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #333c;
+}
+.title:first-child {
+    margin-top: 0;
+}
+.blue {
+    color: #35f;
+    /* border: 1px solid #1112; */
+}
+.light_blue {
+    color: #35c;
+}
+.red {
+    color: #f33;
+}
+.light_red {
+    color: #c33;
+}
+.list_control {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top: 1px dashed #1113;
+    font-size: 18px;
+    z-index: 1;
+    background: #fff;
+}
+
+.list_options {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.email_search {
+    margin-bottom: 8px;
+}
+
+.email_search > input {
+    background: none;
+    border: none;
+    border-bottom: 1px dashed #3335;
+    width: 100%;
+    outline: none;
     font-size: 24px;
 }
 
-.main {
+.email_options {
+    border-bottom: 1px dashed #3335;
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.email_options > button {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.email_labels {
+    display: flex;
+    border-bottom: 1px dashed #3335;
+    margin-bottom: 8px;
+}
+
+.email_labels > button {
+    text-decoration: none;
+    margin-right: 16px;
+    font-size: 16px;
+}
+
+.reader {
     background: #fff;
-    padding: 18px;
-    width: 400px;
+    width: 100%;
+    padding: 24px;
+    overflow: scroll;
+}
+.email_title {
+    font-size: 18px;
+    border-bottom: 1px solid #3333;
+    padding-bottom: 8px;
+}
+.email_subject {
+    font-size: 24px;
+    margin-top: 12px;
+}
+.email_body {
+    margin-top: 12px;
+    font-size: 18px;
+}
+.card_animate {
+    overflow: hidden;
+}
+
+#view_login {
+    /*border: 1px solid #333;*/
+    width: 50%;
+    /*height: 50%;*/
     margin-left: auto;
     margin-right: auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 24px;
+}
+
+.login_button {
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin-top: 10px;
+}
+
+/*.login_button button {*/
+/*    font-size: 24px;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    font-weight: bold;*/
+/*    text-transform: uppercase;*/
+/*    font-family: "Gill Sans", sans-serif;*/
+/*}*/
+
+button, a {
+    font-size: 24px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+    /*font-family: "Gill Sans", sans-serif;*/
+}
+
+.login_title {
+
+}
+
+.login_input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.login_input input {
+    font-size: 24px;
+    border: none;
+    border-bottom: 1px dashed #333;
+    padding: 4px 0px;
+    background: none;
+    outline: none;
+    margin-top: 4px;
+}
+
+input {
+    font-size: 24px;
+    border: none;
+    border-bottom: 1px dashed #333;
+    padding: 4px 0px;
+    background: none;
+    outline: none;
+    margin-top: 4px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.login_input label {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#view_compose {
+    width: 100%;
+}
+
+.compose_main {
+    padding: 16px;
+    /*display: flex;*/
+    flex-direction: column;
+    /*border: 1px solid #333;*/
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.compose_input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.compose_main textarea {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 400px;
+    max-height: 100%;
+    /*height: auto;*/
+    border: 1px dashed #333;
+    outline: none;
+    padding: 8px 12px;
+    font-size: 24px;
+}
+
+.compose_controls {
+    display: flex;
+    justify-content: flex-end;
     margin-top: 20px;
+}
+
+.compose_controls > button {
+    margin-right: 30px;
+}
+
+.compose_controls > button:last-child {
+    margin-right: 0;
+}
+
+.rule {
+    border: 1px solid #333;
+    padding: 8px 16px;
+    width: 400px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.rule_match {
+    border-bottom: 1px dashed #222;
+}
+
+.rule_labels {
+    display: flex;
+    border-bottom: 1px dashed #222;
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+}
+
+.label {
+    margin-right: 12px;
+    text-decoration: underline;
+}
+
+.label:last-child {
+    margin-right: 0;
+}
+
+.rule_options {
+
+}
+
+.rule_options > button {
+    font-size: 18px;
+    margin-right: 12px;
+    text-decoration: none;
+}
+
+.rule_options > button:last-child {
+    margin-right: 0;
+}
+
+.rule input {
+    width: 100%;
+}
+
+.add_labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px dashed #333;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.add_labels > select {
+    font-size: 20px;
+    background: none;
+    border: 1px solid #333;
+    min-width: 200px;
+}
+
+.add_labels > button {
+    font-size: 18px;
+    margin-right: 12px;
+    text-decoration: none;
+    margin-left: 12px;
 }

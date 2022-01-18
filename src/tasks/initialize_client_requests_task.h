@@ -23,6 +23,8 @@ private:
     std::shared_ptr<Controller> _controller;
     std::shared_ptr<State> state;
     bool _alive;
+
+    bool authorize(const std::shared_ptr<ClientRequest>&, std::shared_ptr<UserAccount>&);
 };
 
 

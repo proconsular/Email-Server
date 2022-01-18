@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello World</title>
+<html>
+  <head>
+    <title>drade.io mail</title>
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div class="main">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae nunc metus. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque id molestie odio. Vestibulum lorem ipsum,
-    placerat iaculis malesuada in, mattis eu elit. In leo nisl, mattis vitae massa sit amet, semper pretium nisl.
-    Curabitur pretium urna sit amet massa consequat faucibus. Cras quis sem eu nunc feugiat malesuada et nec lacus.
-    Donec vestibulum et neque eget facilisis. Donec at pretium velit, nec aliquam ex.
-    Quisque dolor eros, tristique et rutrum at, semper et purus. Mauris maximus sed augue non imperdiet. Quisque
-    fermentum blandit orci non pellentesque. Phasellus tristique facilisis velit, et elementum nibh efficitur sed. Ut
-    pulvinar sollicitudin sem id vestibulum. Morbi nec tempus nisi. Sed ultrices felis non ante mattis elementum.
-</div>
-</body>
+  </head>
+  <body>
+    <div class="page">
+      <div id="notification" class="notification">
+        Update Succeeded
+      </div>
+      <div id="container" class="main">
+      </div>
+      <div class="controls" style="display: none">
+        <button id="email_button">Email</button>
+        <button id="users_button">Users</button>
+        <button id="settings_button">Settings</button>
+        <button id="logout_button">Logout</button>
+      </div>
+    </div>
+    <script type="module" src="scripts/main.js"></script>
+  </body>
 </html>

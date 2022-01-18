@@ -5,23 +5,16 @@
 #ifndef P8_WEB_SERVER_LOAD_CONFIGURATION_TASK_H
 #define P8_WEB_SERVER_LOAD_CONFIGURATION_TASK_H
 
-#include "task.h"
+#include "controlled_task.h"
 
 #include <utility>
-#include "state.h"
+#include "general/state.h"
 #include "controllers/controller.h"
 
-class LoadConfigurationTask: public Task {
-public:
-    explicit LoadConfigurationTask(std::shared_ptr<Controller> controller): _controller(std::move(controller)), _alive(true) {}
+struct LoadConfigurationTask: ControlledTask {
+    LoadConfigurationTask(std::shared_ptr<State> state, std::shared_ptr<Controller> controller): ControlledTask(std::move(state), std::move(controller)) {}
 
     void perform() override;
-    bool alive() override {
-        return _alive;
-    }
-private:
-    std::shared_ptr<Controller> _controller;
-    bool _alive;
 };
 
 

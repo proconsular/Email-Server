@@ -16,21 +16,22 @@ void TLSReceptionTask::perform() {
         SSL* ssl = SSL_new(_state->ssl_context);
         SSL_set_fd(ssl, new_client.id);
 
-        int ret = -1;
+	int ret = -1;
         int tries = 5;
         while (ret < 0 && tries >= 0) {
-            ret = SSL_accept(ssl);
+	    ret = SSL_accept(ssl);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             tries--;
         }
-
-        if (ret < 0) {
+	
+	if (ret < 0) {
             _controller->apply(Action(ReportError, std::make_shared<std::string>("SSL Accept failure")));
             close(connection->socket.id);
             SSL_free(ssl);
             continue;
         }
 
+	
         connection->last_read = get_time();
 
         connection->ssl = ssl;

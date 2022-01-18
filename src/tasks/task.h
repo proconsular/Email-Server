@@ -5,8 +5,7 @@
 #ifndef P8_WEB_SERVER_TASK_H
 #define P8_WEB_SERVER_TASK_H
 
-class Task {
-public:
+struct Task {
     virtual void perform() = 0;
     virtual bool alive() = 0;
 };

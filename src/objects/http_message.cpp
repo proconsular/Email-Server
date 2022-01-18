@@ -25,6 +25,8 @@ std::shared_ptr<std::string> HttpMessage::generate() const {
         }
         if (body != nullptr && !body->empty()) {
             _headers.push_back(join(": ", {"Content-Length", std::to_string(body->size())}));
+        } else {
+            _headers.push_back(join(": ", {"Content-Length", std::to_string(0)}));
         }
         output->append(join("\r\n", _headers));
         output->append("\r\n\r\n");

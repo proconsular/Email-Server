@@ -47,4 +47,12 @@ std::string encode_base_64(const uint8_t *, size_t);
 
 uint32_t convert_from_big_endian(const char*, uint8_t);
 
+std::string get_time_str(std::chrono::system_clock::time_point);
+
+::std::string decode_base64(const ::std::string &ascdata);
+
+std::string get_local_part(const std::string&);
+std::string get_domain(const std::string&);
+std::vector<std::string> parse_recipients(const std::string&);
+
 #endif //P8_WEB_SERVER_UTILS_H

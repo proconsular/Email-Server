@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include "http_client_app.h"
-#include "json.hpp"
+#include "general/json.hpp"
 
 class DockerInterfaceApp {
 public:

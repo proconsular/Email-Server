@@ -6,6 +6,7 @@
 
 #include "json.hpp"
 #include "jwt-cpp/jwt.h"
+#include "models/account_model.h"
 
 using json = nlohmann::json;
 
@@ -55,12 +56,19 @@ void AuthorizeUserTask::perform() {
                     authorization.ip = _request->connection->socket.ip();
 
                     account->authorizations.push_back(authorization);
-
                     json output({
                         {"client_id", authorization.client_id},
                         {"access_token", authorization.access_token},
                         {"refresh_token", authorization.refresh_token},
                     });
+
+                    try {
+                        auto query = _state->database->query("UPDATE accounts SET access_token = (%0q), refresh_token = (%1q) WHERE id = " + std::to_string(account->id));
+                        query.parse();
+                        query.execute(authorization.access_token, authorization.refresh_token);
+                    } catch(const mysqlpp::Exception& e) {
+                        std::cerr << "err: " << e.what() << std::endl;
+                    }
 
                     _request->data = std::make_shared<std::string>(output.dump());
                     _request->status = Complete;

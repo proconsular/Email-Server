@@ -8,7 +8,7 @@
 #include "receiver.h"
 
 #include <utility>
-#include "state.h"
+#include "general/state.h"
 
 class StateActionReceiver: public Receiver {
 public:

@@ -37,6 +37,7 @@ enum Actions {
 
     ReportError,
     ReportLog,
+    Print,
 };
 
 class Action {

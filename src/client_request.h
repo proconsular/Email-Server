@@ -17,6 +17,7 @@
 
 enum Requests {
     Unsupported,
+    NotFound,
     BadRequest,
     RetrieveFile,
     ResolveRoute,
@@ -26,6 +27,10 @@ enum Requests {
     Refresh,
     WebSocketUpgrade,
     Created,
+    SendMail,
+    ListMail,
+    GetMail,
+    OK,
 };
 
 enum RequestStatus {

@@ -15,6 +15,13 @@ RUN make test
 RUN make install
 RUN export PATH="/usr/local/ssl/bin:${PATH}"
 RUN apt-get -y install git
+RUN apt-get -y install mysql-client libmysqlcppconn-dev libmysql++-dev
+RUN wget -c "https://tangentsoft.com/mysqlpp/releases/mysql++-3.3.0.tar.gz"
+RUN tar -xzvf "mysql++-3.3.0.tar.gz"
+WORKDIR "mysql++-3.3.0"
+RUN ["./configure"]
+RUN make
+RUN make install
 
 WORKDIR /app
 
@@ -29,8 +36,8 @@ COPY config.json .
 COPY keys ./keys
 
 RUN cmake .
-RUN cmake --build .
+RUN cmake --build . --target P11_Mail_Server_run
 
-EXPOSE 8001 443
+EXPOSE 80 443
 
-CMD ["./P8_Web_Server_run"]
+CMD ["./P11_Mail_Server_run"]

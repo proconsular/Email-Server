@@ -3,13 +3,13 @@
 //
 
 #include "log_action_receiver.h"
-#include "socket.h"
-#include "utils.h"
-#include "configuration.h"
-#include "http_request_envelope.h"
-#include "http_response_envelope.h"
-#include "client_request.h"
-#include "http_request_carrier.h"
+#include "general/socket.h"
+#include "general/utils.h"
+#include "general/configuration.h"
+#include "http/http_request_envelope.h"
+#include "http/http_response_envelope.h"
+#include "general/client_request.h"
+#include "http/http_request_carrier.h"
 
 #include <iostream>
 
@@ -134,6 +134,11 @@ void LogActionReceiver::receive(const Action &action) {
         case ReportLog: {
             auto error = std::static_pointer_cast<std::string>(action.data);
             output.append(string_format("LOG: \n%s", error->c_str()));
+            break;
+        }
+        case Print: {
+            auto error = std::static_pointer_cast<std::string>(action.data);
+            output.append(string_format("%s", error->c_str()));
             break;
         }
         default:

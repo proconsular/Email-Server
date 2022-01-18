@@ -7,8 +7,8 @@
 #include <fstream>
 
 #include "load_configuration_task.h"
-#include "json.hpp"
-#include "configuration.h"
+#include "general/json.hpp"
+#include "general/configuration.h"
 
 using json = nlohmann::json;
 
@@ -37,6 +37,9 @@ void LoadConfigurationTask::perform() {
         }
         if (config.find("domain") != config.end()) {
             new_config->domain = config["domain"];
+        }
+        if (config.find("sender_domain") != config.end()) {
+            new_config->sender_domain = config["sender_domain"];
         }
         new_config->from_file = filename;
         _controller->apply(Action(SetConfiguration, new_config));
