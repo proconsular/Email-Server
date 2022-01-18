@@ -11,7 +11,7 @@ It also features a working-in-progress client written in pure Javascript. Althou
 
 ## Goal
 
-My goal with this project was to first see if I could write an email server. Then I wanted to make it as close to a full flegded email server that I could use for other purposes.
+My goal with this project was to first see if I could write an email server. Then I wanted to make it as close to a full flegded email server as possible that I could use for other purposes.
 
 This required a lot of work and I had to meticulously read the relevant RFCs (ie rfc5322, rfc5585, etc).
 I learned quite a bit about how the email system works from reading the internet standards, especially the particulars regarding ensuring your mail is not viewed as spam.
